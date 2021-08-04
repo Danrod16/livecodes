@@ -1,0 +1,11 @@
+require_relative "animal"
+
+class Meerkat < Animal
+  def talk
+    "#{@name} barks"
+  end
+
+  def eat
+    super
+  end
+end
