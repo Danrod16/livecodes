@@ -10,9 +10,12 @@ class SessionsController
     username = @sessions_view.ask_for(:username)
     password = @sessions_view.ask_for(:password)
     employee = @employee_repository.find_by_username(username)
-    return employee if employee && employee.password == password
-
-    @sessions_view.print_wrong_credentials
-    login
+    # return employee if employee && employee.password == password
+    if employee && employee.password == password
+      return employee
+    else
+      @sessions_view.print_wrong_credentials
+      login
+    end
   end
 end
