@@ -9,53 +9,22 @@
 # 5. Implement a ::phyla class method which will return an array of the four phyla of the animal kingdom.
 
 # 6. Add an #eat(food) instance method in Animal which returns a sentence like “Timon eats a scorpion”. Then override this method for the Lion class, and return a sentence like “Simba eats a gazelle. Law of the Jungle!”
-# ------------------
-class Animal
-  attr_reader :name
+require_relative "lion"
+require_relative "meerkat"
+require_relative "warthog"
 
-  def initialize(name)
-    @name = name
-  end
+simba = Lion.new("Simba")
+nala = Lion.new("Nala")
+timon = Meerkat.new("Timon")
+pumbaa = Warthog.new("Pumbaas")
 
-  def self.phyla
-    ['Cat', 'Pig', 'Squirrel', 'Human']
-  end
+animals =[simba,nala,timon,pumbaa]
 
-  def eat(food)
-    "#{@name} eats #{food}"
-  end
-end
-# ---------------------
-require_relative "animal"
-
-class Lion < Animal
-  def talk
-    "#{@name} roars"
-  end
-
-  def eat(food)
-    "#{super(food)}. Law of the Jungle!"
-
-  end
-end
-# -----------------------
-require_relative "animal"
-
-class Meerkat < Animal
-  def talk
-    "#{@name} barks"
-  end
-
-  def eat
-    super
-  end
-end
-# -----------------------
-require_relative "animal"
-
-class Warthog < Animal
-  def talk
-    "#{@name} grunts"
-  end
+animals.each do |animal|
+  p animal.talk
 end
 
+p Animal.phyla
+
+p simba.eat("Gazelle")
+p timon.eat("nothing")
